@@ -4,7 +4,7 @@
 The ALx AirBnB Clone project is a full-stack application inspired by the core functionality of the AirBnB platform. This project focuses on building an interactive console for managing various data models such as users, properties, and bookings, which will eventually be integrated into a web framework. It showcases the development of a custom back-end environment, complete with serialization, storage, and data manipulation.
 
 ## Getting started
-### Prerequisites
+### Prerequisites (Optional)
 - Python 3.8.5
 - Ubuntu 20.04
 ### Installation
