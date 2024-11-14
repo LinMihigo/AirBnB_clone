@@ -2,7 +2,7 @@
 """Defines the FileStorage class"""
 import json
 import os
-from datetime import datetime
+import importlib
 
 
 class FileStorage:
@@ -13,10 +13,6 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-    def __init__(self):
-        """
-        Instance methods init
-        """
     def all(self):
         """
         Returns:
@@ -32,20 +28,28 @@ class FileStorage:
             obj (dict): Instance object (Contains writtable attributes of an
             instance) to append
         """
-        print(obj.to_dict())
-        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj.to_dict()
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
     
     def save(self):
         """
         Serialises __objects to the json file
         """
-        with open(self.__file_path, "w") as file:
-            json.dump(self.__objects, file)
-    
+        with open(self.__file_path, "w", encoding="utf-8") as file:
+            d = {key: val.to_dict() for key, val in self.__objects.items()}
+            json.dump(d, file)
+
     def reload(self):
         """
         Deserialises __file_path file to __objects
         """
+        module_path = 'models.base_model'
+
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r") as file:
-                self.__objects = json.load(file)
+                self.__objects.update(json.load(file))
+
+        for key, value in self.__objects.items():
+            class_name = value.pop('__class__')
+            module = importlib.import_module(module_path)
+            cls = getattr(module, class_name)
+            self.__objects[key] = cls(**value)

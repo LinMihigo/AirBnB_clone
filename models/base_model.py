@@ -14,7 +14,7 @@ class BaseModel:
 
         Args:
             ``*args`` (list): Variable length arg list (empty & unused)
-            ``**kwargs`` (dict): Dictionary holding the instance attributes
+            ``**kwargs`` (self.__dict__): Dictionary holding the instance attributes
             values
         """
         if kwargs:
@@ -24,10 +24,14 @@ class BaseModel:
             self.created_at = datetime.fromisoformat(kwargs['created_at'])
             #: str: Time instance is updated
             self.updated_at = datetime.fromisoformat(kwargs['updated_at'])
+
+            for key, val in kwargs.items():
+                if key not in ['id', 'created_at', 'updated_at', '__class__']:
+                    setattr(self, key, val)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+
             storage.new(self)
 
     def __str__(self):  #: Returns a string representation of the Class Obj.
@@ -35,15 +39,18 @@ class BaseModel:
 
     def save(self):  #: Updates the public instance attr. updated_at
         self.updated_at = datetime.now()
+
         storage.save()
 
     def to_dict(self):
         """
          Returns:
-            dict: An obj containing all keys/values of obj(instance)'s
+            self.__dict__: An obj containing all keys/values of obj(instance)'s
             writtable attributes.
         """
-        self.__dict__['created_at'] = datetime.isoformat(self.__dict__['created_at'])
-        self.__dict__['updated_at'] = datetime.isoformat(self.__dict__['updated_at'])
-        self.__dict__['__class__'] = self.__class__.__name__
-        return self.__dict__
+        dict = {key: val for key, val in self.__dict__.items()}
+        dict['created_at'] = datetime.isoformat(dict['created_at'])
+        dict['updated_at'] = datetime.isoformat(dict['updated_at'])
+        dict.update({'__class__': self.__class__.__name__})
+
+        return dict
