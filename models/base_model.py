@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime
 from models import storage
 
+
 class BaseModel:
     """
     Defines all common attributes/methods for other classes
@@ -14,7 +15,8 @@ class BaseModel:
 
         Args:
             ``*args`` (list): Variable length arg list (empty & unused)
-            ``**kwargs`` (self.__dict__): Dictionary holding the instance attributes
+            ``**kwargs`` (self.__dict__): Dictionary holding the instance
+                attributes
             values
         """
         if kwargs:

@@ -19,7 +19,11 @@ class FileStorage:
             dict: the __objects dict
         """
         return self.__objects
-    
+
+    def update_objects(self, value):
+        """Updates the __objects private attr."""
+        self.__objects = value
+
     def new(self, obj):
         """
         Appends obj to the __objects dict
@@ -29,7 +33,7 @@ class FileStorage:
             instance) to append
         """
         self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
-    
+
     def save(self):
         """
         Serialises __objects to the json file
