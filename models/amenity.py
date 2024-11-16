@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 
 class Amenity(BaseModel):
     """
-    Inherits from BaseModel to define Amenity class 
+    Inherits from BaseModel to define Amenity class
 
     Attributes:
         name (str): Amenity name

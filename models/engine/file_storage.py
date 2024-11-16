@@ -55,7 +55,7 @@ class FileStorage:
 
         for key, value in self.__objects.items():
             class_name = value.pop('__class__')
-            
+
             for mod in modules:
                 if hasattr(mod, class_name):
                     cls = getattr(mod, class_name)

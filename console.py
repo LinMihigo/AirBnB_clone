@@ -169,7 +169,7 @@ class HBNBCommand(cmd.Cmd):
 
             else:
                 print("** class doesn't exist **")
-    
+
     def help_update(self):
         """Help docs - update"""
         print("\n*** Usage: update <ClassName> <instance id> <attr> <value>")
