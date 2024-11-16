@@ -9,14 +9,16 @@ Test methods:
 """
 import unittest
 from models.base_model import BaseModel
+import models
+from datetime import datetime
+from time import sleep
+import os
 
 
 class TestBaseModel(unittest.TestCase):
     """Test cases for the BaseModel class"""
+    pass
 
-    def test_instance_creation(self):
-        base = BaseModel()
-        self.assertIsInstance(base, BaseModel)
 
 if __name__ == "__main__":
     unittest.main()

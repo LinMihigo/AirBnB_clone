@@ -46,7 +46,8 @@ class FileStorage:
         """
         Deserialises __file_path file to __objects
         """
-        module_path = 'models.base_model'
+        module_paths = ['models.base_model', 'models.user']
+        modules = [importlib.import_module(mod) for mod in module_paths]
 
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r") as file:
@@ -54,6 +55,8 @@ class FileStorage:
 
         for key, value in self.__objects.items():
             class_name = value.pop('__class__')
-            module = importlib.import_module(module_path)
-            cls = getattr(module, class_name)
-            self.__objects[key] = cls(**value)
+            
+            for mod in modules:
+                if hasattr(mod, class_name):
+                    cls = getattr(mod, class_name)
+                    self.__objects[key] = cls(**value)

@@ -28,7 +28,22 @@ Inside the console, you can perform the following actions:
 - Update existing objects.
 - Delete objects.
 
+Run `echo "help" | ./console.py` to see list of available command
+<br />
+Run `echo "help <command>" | ./console.py` to see what a command does.
+
 ### Example commands:
+Table of commands:
+| Command | Example |
+| --- | --- |
+| Run the console | `./console.py` |
+| Quit the console | `(hbnb) quit` |
+| Display the help for a command | `(hbnb) help <command>` |
+| Create an object (prints its id) | `(hbnb) create <class>` |
+| Show an object | `(hbnb) show <class> <id>` or `(hbnb) <class>.show(<id>)` |
+| Destroy an object | `(hbnb) destroy <class> <id>` or `(hbnb) <class>.destroy(<id>)` |
+| Show all objects, or all instances of a class | `(hbnb) all` or `(hbnb) all <class>` |
+| Update an attribute of an object | `(hbnb) update <class> <id> <attribute name> "<attribute value>"` or `(hbnb) <class>.update(<id>, <attribute name>, "<attribute value>")` |
 
 Interactive mode:
 ```bash
@@ -68,6 +83,27 @@ $
 ```
 
 ## Testing
+All tests are in the tests dir
+### Documentation
+Modules:
+```bash
+python3 -c 'print(__import__("my_module").__doc__)'
+```
+Classes:
+```bash
+python3 -c 'print(__import__("my_module").MyClass.__doc__)'
+```
+Functions:
+```bash
+# Outside of a class
+python3 -c 'print(__import__("my_module").my_function.__doc__)'
+
+# Inside a class
+python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
+```
+
+### Unittests
+
 Interactive mode:
 ```bash
 python3 -m unittest discover tests

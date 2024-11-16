@@ -3,6 +3,12 @@
 import cmd
 import sys
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
 from models import storage
 
 
@@ -35,12 +41,11 @@ class HBNBCommand(cmd.Cmd):
 
     def help_create(self):
         """Help docs - create"""
-        print()
-        print("*** Usage - create <ClassName>")
-        text = """*** Creates instance of ClassName, saves it to file and
-        prints its id"""
-        print(text)
-        print()
+        print("\n*** Usage - create <ClassName>")
+        print((
+            "Creates instance of ClassName, saves it to file and"
+            "prints its id\n"
+        ))
 
     def do_show(self, line):
         """
@@ -65,9 +70,8 @@ class HBNBCommand(cmd.Cmd):
     def help_show(self):
         """Help docs - show"""
         print()
-        print("*** Usage: show <ClassName> <instance id>")
-        print("*** Prints a string repr. of an instance")
-        print()
+        print("\nUsage: show <ClassName> <instance id>")
+        print("Prints a string repr. of an instance\n")
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id"""
@@ -94,10 +98,8 @@ class HBNBCommand(cmd.Cmd):
 
     def help_destroy(self):
         """Help docs - destroy"""
-        print()
-        print("*** Usage: destroy <ClassName> <instance id>")
-        print("*** Deletes a ClassName instance with a specified instance id")
-        print()
+        print("\nUsage: destroy <ClassName> <instance id>")
+        print("Deletes a ClassName instance with a specified instance id\n")
 
     def do_all(self, line):
         """
@@ -122,12 +124,11 @@ class HBNBCommand(cmd.Cmd):
 
     def help_all(self):
         """Help docs - all"""
-        print()
-        print("*** Usage: all <ClassName>")
-        text = """*** Prints str repr. of all instances. When ClassName is
-        specified, instances printed are related to that class name"""
-        print(text)
-        print()
+        print("\n*** Usage: all <ClassName>")
+        print((
+            "Prints str repr. of all instances. When ClassName is"
+            "specified, instances printed are related to that class name\n"
+        ))
 
     def do_update(self, line):
         """
@@ -138,9 +139,6 @@ class HBNBCommand(cmd.Cmd):
             line (str): The command string
         """
         args = line.split()
-        print()
-        print(args)
-        print()
         if len(args) == 0:
             print("** class name missing **")
         elif len(args) == 1:
@@ -153,11 +151,8 @@ class HBNBCommand(cmd.Cmd):
                 if key in all_objs:
                     cls = globals()[args[0]]
                     obj = all_objs[key]
-                    print(f"Obj: {obj}")
-                    print()
+
                     dict = obj.to_dict()
-                    print(f"dict: {dict}")
-                    print()
                     if args[2]:
                         if args[3]:
                             dict[args[2]] = args[3]
@@ -165,19 +160,25 @@ class HBNBCommand(cmd.Cmd):
                             print("** value missing **")
                     else:
                         print("** attribute name missing **")
-                    print(f"Updated dict: {dict}")
-                    print()
+
                     all_objs[key] = cls(**dict)
-                    print(all_objs.get(key).to_dict())
-                    print()
+
                     cls(**dict).save()
                 else:
                     print("** no instance found **")
 
             else:
                 print("** class doesn't exist **")
+    
+    def help_update(self):
+        """Help docs - update"""
+        print("\n*** Usage: update <ClassName> <instance id> <attr> <value>")
+        print((
+            "Creates/updates an instance of a class's attribute with a "
+            "new value\n"
+        ))
 
-    def do_quit(self):
+    def do_quit(self, line):
         """
         Exit the command interpreter
 
@@ -188,8 +189,8 @@ class HBNBCommand(cmd.Cmd):
 
     def help_quit(self):
         """Help docs - quit"""
-        print("*** Usage: quit")
-        print("*** Command to exit the command interpreter")
+        print("\n*** Usage: quit")
+        print("Command to exit the command interpreter\n")
 
     def do_EOF(self, line):
         """
@@ -203,8 +204,8 @@ class HBNBCommand(cmd.Cmd):
 
     def help_EOF(self):
         """Help docs - EOF"""
-        print("*** Usage: Ctrl-D")
-        print("*** Exit command interpreter")
+        print("\n*** Usage: Ctrl-D")
+        print("Exit command interpreter\n")
 
     def emptyline(self):
         """Disables repetition of previous command on newline"""
