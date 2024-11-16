@@ -27,7 +27,11 @@ class HBNBCommand(cmd.Cmd):
         return " ".join([arg.strip('" ') for arg in self._args])
 
     def do_create(self, line):
-        """Creates new class instance (BaseModel)"""
+        """
+        *** Usage - create <ClassName>
+        Creates new class instance based on ClassName
+
+        """
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -39,17 +43,11 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    def help_create(self):
-        """Help docs - create"""
-        print("*** Usage - create <ClassName>")
-        print((
-            "Creates instance of ClassName, saves it to file and"
-            "prints its id\n"
-        ))
-
     def do_show(self, line):
         """
+        ***Usage: show <ClassName> <instance id>
         Prints a string repr. of an instance based on the class name and id
+
         """
         args = line.split()
         if len(args) == 0:
@@ -67,13 +65,12 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    def help_show(self):
-        """Help docs - show"""
-        print("***Usage: show <ClassName> <instance id>")
-        print("Prints a string repr. of an instance\n")
-
     def do_destroy(self, line):
-        """Deletes an instance based on the class name and id"""
+        """
+        *** Usage: destroy <ClassName> <instance id>
+        Deletes an instance based on the class name and id
+
+        """
         args = line.split()
 
         if len(args) == 0:
@@ -95,13 +92,9 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    def help_destroy(self):
-        """Help docs - destroy"""
-        print("*** Usage: destroy <ClassName> <instance id>")
-        print("Deletes a ClassName instance with a specified instance id\n")
-
     def do_all(self, line):
         """
+        *** Usage: all <ClassName>
         Prints all string repr. of all instances based on or not on the class
         name
 
@@ -121,23 +114,17 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exit **")
 
-    def help_all(self):
-        """Help docs - all"""
-        print("*** Usage: all <ClassName>")
-        print((
-            "Prints str repr. of all instances. When ClassName is"
-            "specified, instances printed are related to that class name\n"
-        ))
-
     def do_update(self, line):
         """
-        Updates an instance based on the class name and id by adding or
-        updating attribute.
+        *** Usage: update <ClassName> <instance id> <attr> <value>
+        Creates and updates an instance based on the class name and id by
+        adding or updating attribute.
 
         Args:
             line (str): The command string
         """
         args = line.split()
+        print(args)
         if len(args) == 0:
             print("** class name missing **")
         elif len(args) == 1:
@@ -165,20 +152,12 @@ class HBNBCommand(cmd.Cmd):
                     cls(**dict).save()
                 else:
                     print("** no instance found **")
-
             else:
                 print("** class doesn't exist **")
 
-    def help_update(self):
-        """Help docs - update"""
-        print("*** Usage: update <ClassName> <instance id> <attr> <value>")
-        print((
-            "Creates/updates an instance of a class's attribute with a "
-            "new value\n"
-        ))
-
     def do_quit(self, line):
         """
+        *** Usage: quit
         Exit the command interpreter
 
         Args:
@@ -186,13 +165,9 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-    def help_quit(self):
-        """Help docs - quit"""
-        print("*** Usage: quit")
-        print("Command to exit the command interpreter\n")
-
     def do_EOF(self, line):
         """
+        *** Usage: Ctrl-D
         Implements command exist upon reaching or calling EOF
 
         Args:
@@ -200,11 +175,6 @@ class HBNBCommand(cmd.Cmd):
         """
         print()
         return True
-
-    def help_EOF(self):
-        """Help docs - EOF"""
-        print("*** Usage: Ctrl-D")
-        print("Exit command interpreter\n")
 
     def emptyline(self):
         """Disables repetition of previous command on newline"""
