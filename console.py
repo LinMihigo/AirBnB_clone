@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_create(self):
         """Help docs - create"""
-        print("\n*** Usage - create <ClassName>")
+        print("*** Usage - create <ClassName>")
         print((
             "Creates instance of ClassName, saves it to file and"
             "prints its id\n"
@@ -69,8 +69,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_show(self):
         """Help docs - show"""
-        print()
-        print("\nUsage: show <ClassName> <instance id>")
+        print("***Usage: show <ClassName> <instance id>")
         print("Prints a string repr. of an instance\n")
 
     def do_destroy(self, line):
@@ -98,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_destroy(self):
         """Help docs - destroy"""
-        print("\nUsage: destroy <ClassName> <instance id>")
+        print("*** Usage: destroy <ClassName> <instance id>")
         print("Deletes a ClassName instance with a specified instance id\n")
 
     def do_all(self, line):
@@ -124,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_all(self):
         """Help docs - all"""
-        print("\n*** Usage: all <ClassName>")
+        print("*** Usage: all <ClassName>")
         print((
             "Prints str repr. of all instances. When ClassName is"
             "specified, instances printed are related to that class name\n"
@@ -172,7 +171,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_update(self):
         """Help docs - update"""
-        print("\n*** Usage: update <ClassName> <instance id> <attr> <value>")
+        print("*** Usage: update <ClassName> <instance id> <attr> <value>")
         print((
             "Creates/updates an instance of a class's attribute with a "
             "new value\n"
@@ -189,7 +188,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_quit(self):
         """Help docs - quit"""
-        print("\n*** Usage: quit")
+        print("*** Usage: quit")
         print("Command to exit the command interpreter\n")
 
     def do_EOF(self, line):
@@ -204,7 +203,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_EOF(self):
         """Help docs - EOF"""
-        print("\n*** Usage: Ctrl-D")
+        print("*** Usage: Ctrl-D")
         print("Exit command interpreter\n")
 
     def emptyline(self):
