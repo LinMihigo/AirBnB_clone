@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Unit tests for the User 
+Unit tests for User
 
 Test methods:
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Unit tests for the State 
+Unit tests for the State
 
 Test methods:
 
