@@ -1,17 +1,16 @@
 #!/usr/bin/python3
 """
-Unit tests for the BaseModel Class
+Unit tests for the console
 
 Test methods:
 
 """
 import unittest
-from models.base_model import BaseModel
+from console import HBNBCommand
 
 
-class TestBaseModel(unittest.TestCase):
-    #: Test cases for the BaseModel class
-
+class TestConsole(unittest.TestCase):
+    #: Test cases methods
     pass
 
 
